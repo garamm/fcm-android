@@ -62,7 +62,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendNormalNotification(String title, String msg, String messageId) {
         Log.i(TAG, "enter sendNormalNotification");
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("messasgeId", messasgeId);
+        intent.putExtra("messageID", messasgeId);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
@@ -97,7 +97,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Log.i(TAG, "enter sendImageNotification()");
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("messasgeId", messasgeId);
+        intent.putExtra("messageID", messasgeId);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
