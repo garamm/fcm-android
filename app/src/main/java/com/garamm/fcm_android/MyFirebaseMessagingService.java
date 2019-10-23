@@ -41,10 +41,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String title = remoteMessage.getData().get("title");
             String msg = remoteMessage.getData().get("msg");
             String imgUrl = remoteMessage.getData().get("imgUrl");
+            String messageId = remoteMessage.getMessageId();
             if (imgUrl != null) {
-                sendImageNotification(title, msg, imgUrl);
+                sendImageNotification(title, msg, imgUrl, messageId);
             } else {
-                sendNormalNotification(title, msg);
+                sendNormalNotification(title, msg, messageId);
             }
         }
     }
@@ -58,9 +59,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         editor.commit();
     }
 
-    private void sendNormalNotification(String title, String msg) {
+    private void sendNormalNotification(String title, String msg, String messageId) {
         Log.i(TAG, "enter sendNormalNotification");
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("messasgeId", messasgeId);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
@@ -90,11 +92,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void sendImageNotification(final String title, final String msg, String imgUrl) {
+    private void sendImageNotification(final String title, final String msg, String imgUrl, String messageId) {
         Log.i("ttt", imgUrl);
 
         Log.i(TAG, "enter sendImageNotification()");
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("messasgeId", messasgeId);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
