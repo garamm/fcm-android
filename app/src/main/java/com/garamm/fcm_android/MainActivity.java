@@ -27,6 +27,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        try {
+            String messageID = getIntent().getStringExtra("messageID");
+            if (!messageID.equals("")) { // messageID가 있으면 푸쉬 눌러서 접근한 것으로 구분
+                Log.i("info", "푸쉬 눌러서 접속함");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String channelId = getString(R.string.default_notification_channel_id);
