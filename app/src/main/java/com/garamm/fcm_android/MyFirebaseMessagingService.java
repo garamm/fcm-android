@@ -39,7 +39,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //            String title = remoteMessage.getNotification().getTitle();
 //            String msg = remoteMessage.getNotification().getBody();
             String title = remoteMessage.getData().get("title");
-            String msg = remoteMessage.getData().get("msg");
+            String msg = remoteMessage.getData().get("body");
             String imgUrl = remoteMessage.getData().get("image");
             String messageId = remoteMessage.getMessageId();
             if (imgUrl != null) {
